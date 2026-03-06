@@ -6,7 +6,9 @@
 
 ## Installation
 
-You can find the package here: [**@darco2903/track-queue**](https://github.com/users/Darco2903/packages/npm/package/track-queue)
+```bash
+npm install @darco2903/track-queue
+```
 
 ## Example Usage
 
