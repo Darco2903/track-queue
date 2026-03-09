@@ -332,4 +332,43 @@ describe("TrackQueue", () => {
         queue.add(1, 2, 3);
         expect(queue.toArray()).toEqual([1, 2, 3]);
     });
+
+    it("should return the previous and next items in the queue", () => {
+        const queue = new TrackQueue<number>();
+        queue.add(1, 2, 3);
+        expect(queue.previousItems).toEqual([]);
+        expect(queue.nextItems).toEqual([2, 3]);
+        queue.next();
+        expect(queue.previousItems).toEqual([1]);
+        expect(queue.nextItems).toEqual([3]);
+        queue.next();
+        expect(queue.previousItems).toEqual([1, 2]);
+        expect(queue.nextItems).toEqual([]);
+    });
+
+    it("should trim previous items from the queue", () => {
+        const queue = new TrackQueue<number>();
+        queue.add(1, 2, 3);
+        queue.next();
+        expect(queue.currentPosition).toBe(1);
+        queue.trimStart();
+        expect(queue.toArray()).toEqual([2, 3]);
+        expect(queue.current).toBe(2);
+        expect(queue.currentPosition).toBe(0);
+        expect(queue.previousItems).toEqual([]);
+        expect(queue.hasPrevious).toBeFalsy();
+    });
+
+    it("should trim next items from the queue", () => {
+        const queue = new TrackQueue<number>();
+        queue.add(1, 2, 3);
+        queue.next();
+        expect(queue.currentPosition).toBe(1);
+        queue.trimEnd();
+        expect(queue.toArray()).toEqual([1, 2]);
+        expect(queue.current).toBe(2);
+        expect(queue.currentPosition).toBe(1);
+        expect(queue.nextItems).toEqual([]);
+        expect(queue.hasNext).toBeFalsy();
+    });
 });

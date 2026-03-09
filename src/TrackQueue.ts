@@ -59,6 +59,20 @@ export class TrackQueue<T> {
     }
 
     /**
+     * An array of the items in the queue that come before the current position.
+     */
+    public get previousItems(): T[] {
+        return this.queue.slice(0, this.position);
+    }
+
+    /**
+     * An array of the items in the queue that come after the current position.
+     */
+    public get nextItems(): T[] {
+        return this.queue.slice(this.position + 1);
+    }
+
+    /**
      * Creates a new TrackQueue instance.
      */
     constructor(array: T[] = []) {
@@ -304,5 +318,20 @@ export class TrackQueue<T> {
      */
     public toArray(): T[] {
         return this.queue.slice();
+    }
+
+    /**
+     * Remove all previous items from the queue, leaving only the current item and the next items.
+     */
+    public trimStart(): void {
+        this.queue = this.queue.slice(this.position);
+        this.position = 0;
+    }
+
+    /**
+     * Remove all next items from the queue, leaving only the current item and the previous items.
+     */
+    public trimEnd(): void {
+        this.queue = this.queue.slice(0, this.position + 1);
     }
 }
