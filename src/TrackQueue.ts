@@ -222,10 +222,20 @@ export class TrackQueue<T> {
      * @returns The last item in the queue, or null if the queue is empty.
      */
     public pop(): T | null {
+        if (this.isEmpty) {
+            return null;
+        }
         return this.removeAt(this.queue.length - 1);
     }
 
+    /**
+     * Removes the first item from the queue and returns it, or returns null if the queue is empty. If the current position is greater than 0 after shifting, the current position will be adjusted to point to the first item in the queue.
+     * @returns The first item in the queue, or null if the queue is empty.
+     */
     public shift(): T | null {
+        if (this.isEmpty) {
+            return null;
+        }
         return this.removeAt(0);
     }
 
