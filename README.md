@@ -2,7 +2,16 @@
 
 ## Description
 
-`Track Queue` is a TypeScript library that provides a strongly-typed queue with tracking capabilities. It allows to define a queue of items and track the current position, previous items, and next items in the queue.
+`Track Queue` is a TypeScript library that provides a strongly-typed queue with tracking capabilities. It allows to define a queue of items and track the current position, previous items, and next items in the queue. This can be useful in various scenarios, such as media players, task management systems, or any situation where you need to manage a sequence of items and navigate through them efficiently.
+
+## Features
+
+- Strongly-typed queue with generics
+- Track current position in the queue
+- Move forward and backward through the queue
+- Insert items at any position in the queue
+- Inspect next and previous items
+- And some more...
 
 ## Installation
 
